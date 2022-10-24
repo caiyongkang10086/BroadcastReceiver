@@ -12,9 +12,13 @@ import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private IntentFilter intentFilter;
     private NetWorkChangeCallback netWorkChangeCallback;
     //        <-- dynamic register BroadcastReceiver>
@@ -35,6 +39,18 @@ public class MainActivity extends AppCompatActivity {
 //        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
 //        networkChangeReceiver = new NetworkChangeReceiver();
 //        registerReceiver(networkChangeReceiver, intentFilter);
+        Button sendBroadcastReceiver = findViewById(R.id.sendBroadcastReceiver);
+        sendBroadcastReceiver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "MainActivity Button sendBroadcastReceiver onClick");
+                Intent intent = new Intent("com.cvte.broadcastreceiver.Standard_Broadcast");
+                //新版android标准广播需要设置包名（相较于《第一行代码》里的android版本）
+                intent.setPackage(getPackageName());
+                sendBroadcast(intent);
+            }
+        });
+
     }
 
     @Override

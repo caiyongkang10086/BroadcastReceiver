@@ -44,10 +44,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "MainActivity Button sendBroadcastReceiver onClick");
-                Intent intent = new Intent("com.cvte.broadcastreceiver.Standard_Broadcast");
+                //发送有序广播
+                Intent intent = new Intent("com.cvte.broadcasttest.OrderedBroadcast");
+//                //发送标准广播
+//                Intent intent = new Intent("com.cvte.broadcastreceiver.Standard_Broadcast");
                 //新版android标准广播需要设置包名（相较于《第一行代码》里的android版本）
                 intent.setPackage(getPackageName());
-                sendBroadcast(intent);
+                //发送有序广播
+                sendOrderedBroadcast(intent,null);
+//                //发送标准广播
+//                sendBroadcast(intent);
             }
         });
 
